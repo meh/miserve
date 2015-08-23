@@ -1,0 +1,68 @@
+[package]
+name    = "miserve"
+version = "0.1.0"
+
+authors = ["meh. <meh@schizofreni.co>"]
+license = "GPLv3"
+
+[dependencies]
+log        = "*"
+env_logger = "*"
+
+bitflags = "*"
+
+time = "0.1.12"
+
+glutin = { git = "https://github.com/tomaka/glutin" }
+gleam  = "0.1"
+x11    = "2.0"
+
+euclid = "0.1"
+
+url = "0.2"
+
+layers = { git = "https://github.com/servo/rust-layers" }
+
+[dependencies.compositing]
+git  = "https://github.com/servo/servo"
+path = "components/compositing"
+
+[dependencies.net]
+git  = "https://github.com/servo/servo"
+path = "components/net"
+
+[dependencies.net_traits]
+git  = "https://github.com/servo/servo"
+path = "components/net_traits"
+
+[dependencies.msg]
+git  = "https://github.com/servo/servo"
+path = "components/msg"
+
+[dependencies.profile]
+git  = "https://github.com/servo/servo"
+path = "components/profile"
+
+[dependencies.profile_traits]
+git  = "https://github.com/servo/servo"
+path = "components/profile_traits"
+
+[dependencies.script]
+git  = "https://github.com/servo/servo"
+path = "components/script"
+
+[dependencies.script_traits]
+git  = "https://github.com/servo/servo"
+path = "components/script_traits"
+
+[dependencies.layout]
+git  = "https://github.com/servo/servo"
+path = "components/layout"
+
+[dependencies.gfx]
+git  = "https://github.com/servo/servo"
+path = "components/gfx"
+
+[dependencies.util]
+git  = "https://github.com/servo/servo"
+path = "components/util"
