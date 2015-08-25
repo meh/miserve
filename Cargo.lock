@@ -582,7 +582,7 @@ dependencies = [
 [[package]]
 name = "glutin"
 version = "0.3.5"
-source = "git+https://github.com/tomaka/glutin#506c4ed6ea669c885c8a33668e0f8a00fd351989"
+source = "git+https://github.com/tomaka/glutin#7dd98efccb61578e4aec7fdd166e81878fe84839"
 dependencies = [
  "android_glue 0.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "cgl 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
