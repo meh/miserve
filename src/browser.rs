@@ -6,7 +6,6 @@ use glutin::Event;
 
 use compositing::Constellation;
 use compositing::CompositorTask;
-use msg::constellation_msg::{Msg, ConstellationChan};
 use layout::layout_task::LayoutTask;
 use script::script_task::ScriptTask;
 
@@ -24,15 +23,13 @@ use sutil::opts;
 use window::Window;
 
 pub struct Browser {
-	compositor:    Box<CompositorEventListener + 'static>,
-	constellation: ConstellationChan,
+	compositor: Box<CompositorEventListener + 'static>,
 }
 
 impl Browser {
 	pub fn new(window: Rc<Window>) -> Browser {
 		let opts          = opts::get();
 		let has_clipboard = window.supports_clipboard();
-
 
 		let (proxy, receiver) = WindowMethods::create_compositor_channel(&Some(window.clone()));
 		let time_profiler     = profile::time::Profiler::create(opts.time_profiler_period);
@@ -49,21 +46,16 @@ impl Browser {
 				time_profiler.clone(), mem_profiler.clone(), None,
 				storage, has_clipboard);
 
-			if let Some(ref url) = opts.url {
-				constellation.0.send(Msg::InitLoadUrl(url.clone())).unwrap();
-			}
-
 			constellation
 		};
 
 		let mut compositor = CompositorTask::create(Some(window), proxy, receiver,
-			constellation.clone(), time_profiler, mem_profiler);
+			constellation.clone(), time_profiler.clone(), mem_profiler.clone());
 
 		compositor.handle_events(vec![WindowEvent::InitializeCompositing]);
 
 		Browser {
-			compositor:    compositor,
-			constellation: constellation,
+			compositor: compositor,
 		}
 	}
 
@@ -83,8 +75,8 @@ impl Browser {
 		self.compositor.handle_events(events)
 	}
 
-	pub fn go(&self, url: Url) {
-		self.constellation.0.send(Msg::InitLoadUrl(url)).unwrap();
+	pub fn go(&mut self, url: Url) {
+		self.compositor.handle_events(vec![WindowEvent::LoadUrl(url.to_string())]);
 	}
 
 	pub fn shutdown(mut self) {
