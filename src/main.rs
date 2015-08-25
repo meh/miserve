@@ -33,6 +33,8 @@ extern crate env_logger;
 #[macro_use]
 extern crate bitflags;
 
+extern crate num_cpus;
+
 use std::rc::Rc;
 use std::env;
 
