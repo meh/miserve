@@ -41,7 +41,6 @@ use util::init;
 
 pub mod window;
 use window::Window;
-use compositing::windowing::WindowMethods;
 
 pub mod browser;
 use browser::Browser;
@@ -63,8 +62,6 @@ fn main() {
 			if !browser.handle(event) {
 				break 'main;
 			}
-
-			window.present();
 		}
 	}
 
