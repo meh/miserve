@@ -33,7 +33,7 @@ impl Window {
 		let window = glutin::WindowBuilder::new()
 			.with_title("miserve".to_owned())
 			.with_dimensions(800, 600)
-			.with_gl(GlRequest::Specific(Api::OpenGlEs, (2, 0)))
+			.with_gl(GlRequest::Specific(Api::OpenGl, (2, 1)))
 			.build()
 			.unwrap();
 
