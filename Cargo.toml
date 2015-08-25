@@ -6,63 +6,32 @@ authors = ["meh. <meh@schizofreni.co>"]
 license = "GPLv3"
 
 [dependencies]
+# base dependencies
 log        = "*"
 env_logger = "*"
+bitflags   = "*"
+time       = "0.1.12"
+num_cpus   = "*"
 
-bitflags = "*"
-
-time = "0.1.12"
-
+# windowing dependencies
 glutin = { git = "https://github.com/tomaka/glutin" }
 gleam  = "0.1"
 x11    = "2.0"
 
+# interaction dependencies
 euclid = "0.1"
-
-url = "0.2"
-
+url    = "0.2"
 layers = { git = "https://github.com/servo/rust-layers" }
 
-[dependencies.compositing]
-git  = "https://github.com/servo/servo"
-path = "components/compositing"
-
-[dependencies.net]
-git  = "https://github.com/servo/servo"
-path = "components/net"
-
-[dependencies.net_traits]
-git  = "https://github.com/servo/servo"
-path = "components/net_traits"
-
-[dependencies.msg]
-git  = "https://github.com/servo/servo"
-path = "components/msg"
-
-[dependencies.profile]
-git  = "https://github.com/servo/servo"
-path = "components/profile"
-
-[dependencies.profile_traits]
-git  = "https://github.com/servo/servo"
-path = "components/profile_traits"
-
-[dependencies.script]
-git  = "https://github.com/servo/servo"
-path = "components/script"
-
-[dependencies.script_traits]
-git  = "https://github.com/servo/servo"
-path = "components/script_traits"
-
-[dependencies.layout]
-git  = "https://github.com/servo/servo"
-path = "components/layout"
-
-[dependencies.gfx]
-git  = "https://github.com/servo/servo"
-path = "components/gfx"
-
-[dependencies.util]
-git  = "https://github.com/servo/servo"
-path = "components/util"
+# servo modules
+compositing    = { path = "components/compositing", git = "https://github.com/servo/servo" }
+net            = { path = "components/net", git = "https://github.com/servo/servo" }
+net_traits     = { path = "components/net_traits", git = "https://github.com/servo/servo" }
+msg            = { path = "components/msg", git = "https://github.com/servo/servo" }
+profile        = { path = "components/profile", git = "https://github.com/servo/servo" }
+profile_traits = { path = "components/profile_traits", git = "https://github.com/servo/servo" }
+script         = { path = "components/script", git = "https://github.com/servo/servo" }
+script_traits  = { path = "components/script_traits", git = "https://github.com/servo/servo" }
+layout         = { path = "components/layout", git = "https://github.com/servo/servo" }
+gfx            = { path = "components/gfx", git = "https://github.com/servo/servo" }
+util           = { path = "components/util", git = "https://github.com/servo/servo" }
