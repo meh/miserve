@@ -1,9 +1,9 @@
-use sutil::opts;
-use net_traits::hosts;
-use script::dom::bindings::codegen::RegisterBindings;
-use env_logger;
-use script;
+use servo::util::opts;
+use servo::net_traits::hosts;
+use servo::script::dom::bindings::codegen::RegisterBindings;
+use servo::script;
 
+use env_logger;
 use num_cpus;
 
 pub fn init() {
