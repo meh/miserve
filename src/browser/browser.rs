@@ -24,8 +24,8 @@ use browser::{buffer, Buffer, Tab, Event};
 
 /// This struct is the main entry point of the browser.
 ///
-/// When rendering it will render the tab bar, the input bar and the curren tab to
-/// the given textures, and composite them back onto the screen.
+/// When rendering it will render the tab bar, the input bar and the current tab
+/// to the given textures, and composite them back onto the screen.
 pub struct Browser {
 	window: Rc<glutin::Window>,
 	events: Rc<RefCell<Vec<Event>>>,
