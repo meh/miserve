@@ -75,7 +75,7 @@ impl Browser {
 		let opts     = opts::get();
 		let resource = new_resource_task(opts.user_agent.clone(), None);
 
-		gl::load_with(|s| window.get_proc_address(s));
+		gl::load_with(|s| window.get_proc_address(s) as *const _);
 		
 		Browser {
 			window: window,

@@ -45,7 +45,7 @@ fn main() {
 	unsafe {
 		window.make_current().expect("failed to make the context current");
 
-		gl::load_with(|s| window.get_proc_address(s));
+		gl::load_with(|s| window.get_proc_address(s) as *const _);
 
 		gl::clear_color(0.6, 0.6, 0.6, 1.0);
 		gl::clear(gl::COLOR_BUFFER_BIT);
