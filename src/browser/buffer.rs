@@ -18,6 +18,7 @@ use servo::util::cursor::Cursor;
 use servo::compositing::Constellation;
 use servo::compositing::constellation::InitialConstellationState;
 use servo::compositing::CompositorTask;
+use servo::compositing::compositor_task::InitialCompositorState;
 use servo::layout::layout_task::LayoutTask;
 use servo::script::script_task::ScriptTask;
 
@@ -56,10 +57,19 @@ impl Buffer {
 				devtools_chan:      None,
 				storage_task:       browser.storage(),
 				supports_clipboard: true
-			});
+			}
+		);
 
-		let mut compositor = CompositorTask::create(Some(window.clone()), proxy, receiver,
-			constellation, time_profiler, mem_profiler);
+		let mut compositor = CompositorTask::create(
+			Some(window.clone()),
+			InitialCompositorState{
+				sender:             proxy,
+				receiver:           receiver,
+				constellation_chan: constellation,
+				time_profiler_chan: time_profiler,
+				mem_profiler_chan:  mem_profiler
+			}
+		);
 
 		compositor.handle_events(vec![WindowEvent::InitializeCompositing]);
 
