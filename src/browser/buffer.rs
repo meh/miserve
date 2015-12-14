@@ -16,6 +16,7 @@ use servo::euclid::scale_factor::ScaleFactor;
 use servo::util::cursor::Cursor;
 
 use servo::compositing::Constellation;
+use servo::compositing::constellation::InitialConstellationState;
 use servo::compositing::CompositorTask;
 use servo::layout::layout_task::LayoutTask;
 use servo::script::script_task::ScriptTask;
@@ -45,11 +46,17 @@ impl Buffer {
 		let mem_profiler  = browser.profiler().mem();
 
 		let constellation = Constellation::<LayoutTask, ScriptTask>::start(
-			proxy.clone_compositor_proxy(),
-			browser.resource(),
-			browser.cache().image(), browser.cache().font(),
-			time_profiler.clone(), mem_profiler.clone(), None,
-			browser.storage(), true);
+			InitialConstellationState {
+				compositor_proxy:   proxy.clone_compositor_proxy(),
+				resource_task:      browser.resource(),
+				image_cache_task:   browser.cache().image(),
+				font_cache_task:    browser.cache().font(),
+				time_profiler_chan: time_profiler.clone(),
+				mem_profiler_chan:  mem_profiler.clone(),
+				devtools_chan:      None,
+				storage_task:       browser.storage(),
+				supports_clipboard: true
+			});
 
 		let mut compositor = CompositorTask::create(Some(window.clone()), proxy, receiver,
 			constellation, time_profiler, mem_profiler);
