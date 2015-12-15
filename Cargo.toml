@@ -14,7 +14,7 @@ time       = "0.1.12"
 num_cpus   = "*"
 
 # windowing dependencies
-glutin = { git = "https://github.com/tomaka/glutin" }
+glutin = "*"
 x11    = "2.0"
 
 [dependencies.servo]

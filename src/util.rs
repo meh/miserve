@@ -1,4 +1,4 @@
-use servo::util::opts;
+use servo::util::{opts, resource_files};
 use servo::net_traits::hosts;
 use servo::script::dom::bindings::codegen::RegisterBindings;
 use servo::script;
@@ -17,8 +17,8 @@ pub fn init() {
 	opts.user_agent = concat!("Mozilla/5.0 Servo/1.0 miserve/",
 		env!("CARGO_PKG_VERSION")).to_owned();
 
-	opts.url            = None;
-	opts.resources_path = None;
+	opts.url = None;
+	resource_files::set_resources_path(None);
 
 	opts.headless  = false;
 	opts.hard_fail = false;

@@ -1,4 +1,4 @@
-#![feature(box_syntax, result_expect)]
+#![feature(box_syntax)]
 #![allow(dead_code, unused_variables)]
 
 extern crate servo;
@@ -24,6 +24,7 @@ extern crate num_cpus;
 use std::env;
 use std::rc::Rc;
 use std::thread;
+use std::time::Duration;
 
 pub mod util;
 use util::init;
@@ -45,7 +46,7 @@ fn main() {
 	unsafe {
 		window.make_current().expect("failed to make the context current");
 
-		gl::load_with(|s| window.get_proc_address(s));
+		gl::load_with(|s| window.get_proc_address(s) as *const _);
 
 		gl::clear_color(0.6, 0.6, 0.6, 1.0);
 		gl::clear(gl::COLOR_BUFFER_BIT);
@@ -72,7 +73,7 @@ fn main() {
 		}
 		else {
 			browser.handle(browser::Event::Idle);
-			thread::sleep_ms(10);
+			thread::sleep(Duration::from_millis(10));
 		}
 	}
 }
