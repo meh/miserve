@@ -1,4 +1,4 @@
-#![feature(box_syntax, result_expect)]
+#![feature(box_syntax)]
 #![allow(dead_code, unused_variables)]
 
 extern crate servo;
@@ -24,6 +24,7 @@ extern crate num_cpus;
 use std::env;
 use std::rc::Rc;
 use std::thread;
+use std::time::Duration;
 
 pub mod util;
 use util::init;
@@ -72,7 +73,7 @@ fn main() {
 		}
 		else {
 			browser.handle(browser::Event::Idle);
-			thread::sleep_ms(10);
+			thread::sleep(Duration::from_millis(10));
 		}
 	}
 }
