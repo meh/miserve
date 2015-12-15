@@ -127,12 +127,6 @@ impl fmt::Debug for Buffer {
 	}
 }
 
-impl Drop for Buffer {
-	fn drop(&mut self) {
-		self.compositor.shutdown();
-	}
-}
-
 struct Window {
 	glutin: Rc<glutin::Window>,
 	buffer: RefCell<Option<Rc<RefCell<Buffer>>>>,
